@@ -11,6 +11,9 @@ namespace ComInterop.Client
     {
         [MethodImpl(MethodImplOptions.PreserveSig)]
         UInt32 Eat();
+
+        [MethodImpl(MethodImplOptions.PreserveSig)]
+        IntPtr GetName();
     }
 
     public static class ComTest
@@ -36,6 +39,8 @@ namespace ComInterop.Client
             IAnimal monkey = ComTest.CreateMonkey();
             UInt32 num = monkey.Eat();
             Console.WriteLine("Monkey.Eat: {0}", num);
+            string name = Marshal.PtrToStringUTF8(monkey.GetName());
+            Console.WriteLine("Animal.GetName: {0}", name);
         }
 
         static void Main(string[] args)

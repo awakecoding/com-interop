@@ -7,6 +7,7 @@ com::interfaces! {
     #[uuid("EFF8970E-C50F-45E0-9284-291CE5A6F771")]
     pub unsafe interface IAnimal: IUnknown {
         fn Eat(&self) -> u32;
+        fn GetName(&self) -> *const u8;
     }
 }
 
@@ -16,6 +17,10 @@ com::class! {
     impl IAnimal for Monkey {
         fn Eat(&self) -> u32 {
             return 57;
+        }
+
+        fn GetName(&self) -> *const u8 {
+            return "Monkey\0".as_ptr()
         }
     }
 }
